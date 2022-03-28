@@ -52,6 +52,7 @@ class OtpActivity : AppCompatActivity() {
         navigate()
 
 
+        binding.layoutToolbar.tvToolbarTitle.text = getString(R.string.otp_screen)
         binding.layoutToolbar.ivBack.setOnClickListener {
             finish()
         }

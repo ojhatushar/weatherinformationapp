@@ -26,14 +26,6 @@
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:background="@color/color_blue">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvToolbarTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_20sdp"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp" />
             </androidx.appcompat.widget.Toolbar>
 
             <!-- The main content view where fragments are loaded -->

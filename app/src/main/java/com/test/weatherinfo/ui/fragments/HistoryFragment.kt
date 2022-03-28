@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
+import com.test.weatherinfo.R
 import com.test.weatherinfo.data.model.requestModel.LocationHistoryModel
 import com.test.weatherinfo.databinding.FragmentHistoryBinding
+import com.test.weatherinfo.ui.activities.MainActivity
 import com.test.weatherinfo.ui.activities.weatherinfo.WeatherInfoViewModel
 import com.test.weatherinfo.ui.adapters.HistoryScreenListAdapter
 import com.test.weatherinfo.utils.ProgressUtils
@@ -49,7 +51,7 @@ class HistoryFragment : Fragment() {
 
         setUpRecyclerView()
         getLocationObserver()
-        //  binding.viewModel = viewModel
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.history_screen)
         return binding.root
     }
 
@@ -71,7 +73,7 @@ class HistoryFragment : Fragment() {
                             } else {
                                 Toast.makeText(
                                     requireActivity(),
-                                    "No Location Found",
+                                    getString(R.string.no_location),
                                     Toast.LENGTH_LONG
                                 ).show()
 

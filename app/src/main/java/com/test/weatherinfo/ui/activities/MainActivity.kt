@@ -40,9 +40,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.drawerLayout.addDrawerListener(actionBarToggle)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false);
+
+        supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.title = "Home Activity"
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
 
         actionBarToggle.syncState()
 

@@ -49,6 +49,7 @@ class WeatherInfoActivity : AppCompatActivity() {
         }.attach()
 
 
+        binding.layoutToolbar.tvToolbarTitle.text = getString(R.string.weather_info)
         binding.layoutToolbar.ivBack.setOnClickListener {
             finish()
         }

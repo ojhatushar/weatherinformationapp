@@ -31,6 +31,11 @@
     <string name="tv_forecast_weather">Forecast Weather</string>
     <string name="tv_choose">Choose</string>
     <string name="logout_message">Are you sure you want to sign out?</string>
+    <string name="map_screen">Map Screen</string>
+    <string name="history_screen">History Screen</string>
+    <string name="weather_info">Weather Info</string>
+    <string name="otp_screen">Otp Screen</string>
+    <string name="no_location">No Location Found</string>
 
 
     <string-array name="tabTitle">

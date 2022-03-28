@@ -31,6 +31,7 @@ import com.permissionx.guolindev.PermissionX
 import com.test.weatherinfo.R
 import com.test.weatherinfo.databinding.FragmentForcastWeatherBinding
 import com.test.weatherinfo.databinding.FragmentMapBinding
+import com.test.weatherinfo.ui.activities.MainActivity
 import com.test.weatherinfo.ui.activities.login.OtpActivity
 import com.test.weatherinfo.ui.activities.weatherinfo.WeatherInfoActivity
 import com.test.weatherinfo.ui.activities.weatherinfo.WeatherInfoViewModel
@@ -84,21 +85,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         supportMapFragment?.getMapAsync(this)
 
+        (activity as MainActivity).supportActionBar?.title = resources.getString(R.string.map_screen)
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
 
-        binding.btnChoose.setOnClickListener {
-            val intent = Intent(requireActivity(), WeatherInfoActivity::class.java)
-            intent.putExtra("lat", requestedPosition?.latitude)
-            intent.putExtra("long", requestedPosition?.longitude)
-            intent.putExtra("addresses", addresses[0].getAddressLine(0))
 
-            viewModel.saveLocationHistory(
-                String.format("%.4f", requestedPosition?.latitude),
-                String.format("%.4f", requestedPosition?.longitude),
-                addresses[0].getAddressLine(0)
-            )
-            startActivity(intent)
+        binding.btnChoose.setOnClickListener {
+            if (addresses.isNotEmpty()) {
+                val intent = Intent(requireActivity(), WeatherInfoActivity::class.java)
+                intent.putExtra("lat", requestedPosition?.latitude)
+                intent.putExtra("long", requestedPosition?.longitude)
+                intent.putExtra("addresses", addresses[0].getAddressLine(0))
+
+                viewModel.saveLocationHistory(
+                    String.format("%.4f", requestedPosition?.latitude),
+                    String.format("%.4f", requestedPosition?.longitude),
+                    addresses[0].getAddressLine(0)
+                )
+                startActivity(intent)
+            }
         }
 
         return binding.root
@@ -112,18 +118,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         map.setOnMarkerClickListener { false }
 
-        /*map.setOnInfoWindowClickListener { marker ->
-            val latLon = marker.position
-            val intent = Intent(requireActivity(), OtpActivity::class.java)
-            startActivity(intent)
 
-        }*/
-
-
-        map.setOnCameraIdleListener { //float mZoom = mGoogleMap.getCameraPosition().zoom;
+        map.setOnCameraIdleListener {
             val lat: Double = map.cameraPosition.target.latitude
             val lng: Double = map.cameraPosition.target.longitude
-            //
+
             requestedPosition = LatLng(lat, lng)
             if (requestedPosition != null) {
                 updateMarker(requestedPosition!!)
@@ -181,7 +180,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 } else {
                     requestedPosition = LatLng(location.latitude, location.longitude)
                     map.clear()
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(requestedPosition!!, 18F))
+                    map.animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            requestedPosition!!,
+                            18F
+                        )
+                    )
 
                     mMarker = map.addMarker(MarkerOptions().position(requestedPosition!!))
 
@@ -265,12 +269,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         if (mMarker != null && mMarker!!.isInfoWindowShown()) {
             mMarker!!.showInfoWindow();
         }
-        //   val city = addresses[0].locality
-        //  val state = addresses[0].adminArea
-        //   val country = addresses[0].countryName
-        //  val postalCode = addresses[0].postalCode
-        //  val knownName = addresses[0].featureName
-
 
     }
 }

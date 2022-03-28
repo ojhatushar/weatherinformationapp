@@ -27,8 +27,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold" />
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

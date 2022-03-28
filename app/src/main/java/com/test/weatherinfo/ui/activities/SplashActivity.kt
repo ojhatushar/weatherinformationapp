@@ -7,13 +7,18 @@ import android.os.Handler
 import android.os.Looper
 
 import com.test.weatherinfo.R
+import com.test.weatherinfo.data.remote.Constants
+import com.test.weatherinfo.di.PrefProvider
 import com.test.weatherinfo.ui.activities.login.MobileNumberActivity
 
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var prefProvider: PrefProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +28,16 @@ class SplashActivity : AppCompatActivity() {
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MobileNumberActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (prefProvider.getValueboolean(Constants.IS_LOGIN, false)) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this, MobileNumberActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }, 2000) // 2000 is the delayed time in milliseconds.
 
     }

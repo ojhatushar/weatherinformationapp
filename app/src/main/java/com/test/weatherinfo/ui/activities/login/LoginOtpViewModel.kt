@@ -1,23 +1,21 @@
 package com.test.weatherinfo.ui.activities.login
 
 import android.text.TextUtils
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.financialinvestment.data.repositories.WeatherInfoRepository
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
 
 import com.test.weatherinfo.R
 import com.test.weatherinfo.data.model.requestModel.LoginOtpRequestModel
+import com.test.weatherinfo.data.remote.Constants.IS_LOGIN
+import com.test.weatherinfo.di.PrefProvider
 import com.test.weatherinfo.utils.Event
-import com.test.weatherinfo.utils.statusUtils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginOtpViewModel @Inject constructor(private val weatherInfoRepository: WeatherInfoRepository) :
+class LoginOtpViewModel @Inject constructor(
+    private val prefProvider: PrefProvider
+) :
     ViewModel() {
 
 
@@ -35,24 +33,24 @@ class LoginOtpViewModel @Inject constructor(private val weatherInfoRepository: W
 
     fun submitLogin() {
         val value = loginDetails.value
-            when {
-                TextUtils.isEmpty(value?.mobileNumber?.trim()) -> {
-                    _snackbarText.value = Event(R.string.mobile_number_validate)
-                }
-                value?.mobileNumber?.length!! < 10 -> {
-                    _snackbarText.value = Event(R.string.mobile_number_length_validate)
-                }
-                else -> {
-                    _showProgress.value = Event(false)
-
-                    _data.value = Event(value.mobileNumber)
-                }
+        when {
+            TextUtils.isEmpty(value?.mobileNumber?.trim()) -> {
+                _snackbarText.value = Event(R.string.mobile_number_validate)
+            }
+            value?.mobileNumber?.length!! < 10 -> {
+                _snackbarText.value = Event(R.string.mobile_number_length_validate)
+            }
+            else -> {
+                _showProgress.value = Event(true)
+                _data.value = Event(value.mobileNumber)
+                _showProgress.value = Event(false)
+            }
 
         }
 
     }
 
-    fun verifyOtp(){
+    fun verifyOtp() {
 
         val value = loginDetails.value
         when {
@@ -64,9 +62,11 @@ class LoginOtpViewModel @Inject constructor(private val weatherInfoRepository: W
             }
             else -> {
                 _showProgress.value = Event(false)
+                prefProvider.setValueboolean(IS_LOGIN, true)
                 _data.value = Event(value.otp)
 
-                }
+
             }
         }
     }
+}
