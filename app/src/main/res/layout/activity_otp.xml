@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.test.weatherinfo.ui.activities.login.LoginOtpViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activities.login.OtpActivity">
+
+        <include
+            android:id="@+id/layoutToolbar"
+            layout="@layout/layout_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layoutToolbar"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/tv_otp_verification"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp" />
+
+
+            <com.mukesh.OtpView
+                android:id="@+id/otpView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:focusableInTouchMode="true"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:text="@={viewModel.loginDetails.otp}"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/_18ssp"
+                app:OtpItemCount="6"
+                app:OtpLineColor="@color/color_blue"
+                app:OtpViewType="line" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:text="00:12"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:background="@drawable/rounded_corner_button"
+                android:onClick="@{() -> viewModel.verifyOtp()}"
+                android:text="@string/tv_verify_proceed"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

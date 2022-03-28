@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="locationHistoryModel"
+            type="com.test.weatherinfo.data.model.requestModel.LocationHistoryModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/ivImageIcon"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:text="@{locationHistoryModel.address}"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/_10ssp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{locationHistoryModel.latitude}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{locationHistoryModel.longitude}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/black" />
+
+    </LinearLayout>
+</layout>

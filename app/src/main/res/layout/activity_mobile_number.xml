@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.test.weatherinfo.ui.activities.login.LoginOtpViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activities.login.MobileNumberActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_mob_info"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etMobilePin"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:backgroundTint="@color/color_blue"
+                android:gravity="center"
+                android:hint="@string/tv_mobile_number"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:text="@={loginViewModel.loginDetails.mobileNumber}"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:background="@drawable/rounded_corner_button"
+                android:onClick="@{() -> loginViewModel.submitLogin()}"
+                android:text="@string/tv_submit"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

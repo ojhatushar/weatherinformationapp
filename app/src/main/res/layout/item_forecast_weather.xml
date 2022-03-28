@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="forecastWeatherModel"
+            type="com.test.weatherinfo.data.model.responseModel.ForecastWeatherResponse.Any.Weather" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivImageIcon"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/color_gray"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{forecastWeatherModel.main}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{forecastWeatherModel.description}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

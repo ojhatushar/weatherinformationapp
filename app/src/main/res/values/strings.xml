@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Weather Information Application</string>
+    <string name="loading">Loading</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="tv_weather_information">Weather Information</string>
+    <string name="tv_mobile_number">Mobile Number</string>
+    <string name="tv_submit">Submit</string>
+    <string name="tv_mob_info">Please Enter Mobile Number</string>
+    <string name="tv_otp_verification">OTP Verification</string>
+    <string name="tv_verify_proceed">Verify</string>
+
+
+    <!--Validation-->
+
+    <string name="mobile_number_validate">Please Enter Mobile Number</string>
+    <string name="mobile_number_length_validate">Please Enter Correct Mobile Number</string>
+    <string name="otp_validate">Please Enter OTP</string>
+    <string name="otp_length_validate">Please Enter Valid OTP</string>
+    <string name="menu_map_screen">Map Screen</string>
+    <string name="menu_history_screen">History Screen</string>
+    <string name="menu_logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="enable_gps">Enable GPS</string>
+    <string name="required_for_this_app">Required for this app</string>
+    <string name="enable_now">Enable Now</string>
+
+    <string name="tv_current_weather">Current Weather</string>
+    <string name="tv_forecast_weather">Forecast Weather</string>
+    <string name="tv_choose">Choose</string>
+    <string name="logout_message">Are you sure you want to sign out?</string>
+
+
+    <string-array name="tabTitle">
+        <item>@string/tv_current_weather</item>
+        <item>@string/tv_forecast_weather</item>
+    </string-array>
+</resources>
