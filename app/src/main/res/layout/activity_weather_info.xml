@@ -7,6 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/weather_image_info"
         tools:context=".ui.activities.TrainingActivity">
 
         <include
@@ -16,11 +17,12 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_50sdp"
             android:layout_below="@+id/layoutToolbar"
+            android:background="@drawable/weather_image_info"
             app:tabIndicatorColor="@color/color_blue"
             app:tabSelectedTextColor="@color/color_blue"
-            app:tabTextColor="@color/black" />
+            app:tabTextColor="@color/white" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

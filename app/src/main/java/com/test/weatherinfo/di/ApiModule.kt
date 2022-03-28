@@ -1,9 +1,8 @@
 package com.test.weatherinfo.di
 
 import android.content.Context
-import android.os.Build
 import com.test.weatherinfo.BuildConfig
-import com.example.financialinvestment.data.remote.NetworkConnectionInterceptor
+import com.test.weatherinfo.data.remote.NetworkConnectionInterceptor
 import com.test.weatherinfo.data.remote.ApiServieNew
 import dagger.Module
 import dagger.Provides

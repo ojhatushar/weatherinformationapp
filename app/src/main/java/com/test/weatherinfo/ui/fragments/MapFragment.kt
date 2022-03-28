@@ -85,7 +85,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         supportMapFragment?.getMapAsync(this)
 
-        (activity as MainActivity).supportActionBar?.title = resources.getString(R.string.map_screen)
+        (activity as MainActivity).supportActionBar?.title =
+            resources.getString(R.string.map_screen)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -112,13 +113,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
 
+    @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         permissionRequired()
 
         map.setOnMarkerClickListener { false }
-
-
+        map.isMyLocationEnabled = true
         map.setOnCameraIdleListener {
             val lat: Double = map.cameraPosition.target.latitude
             val lng: Double = map.cameraPosition.target.longitude

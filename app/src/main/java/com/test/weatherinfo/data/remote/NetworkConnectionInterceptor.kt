@@ -1,4 +1,4 @@
-package com.example.financialinvestment.data.remote
+package com.test.weatherinfo.data.remote
 
 import android.content.Context
 import android.net.ConnectivityManager

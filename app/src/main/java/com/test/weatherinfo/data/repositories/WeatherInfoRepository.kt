@@ -1,4 +1,4 @@
-package com.example.financialinvestment.data.repositories
+package com.test.weatherinfo.data.repositories
 
 
 import com.test.weatherinfo.data.db.AppDatabase

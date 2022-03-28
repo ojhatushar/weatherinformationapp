@@ -2,11 +2,9 @@ package com.test.weatherinfo.ui.activities.login
 
 import android.text.TextUtils
 import androidx.lifecycle.*
-import com.example.financialinvestment.data.repositories.WeatherInfoRepository
 
 import com.test.weatherinfo.R
 import com.test.weatherinfo.data.model.requestModel.LoginOtpRequestModel
-import com.test.weatherinfo.data.remote.Constants.IS_LOGIN
 import com.test.weatherinfo.di.PrefProvider
 import com.test.weatherinfo.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -62,7 +60,6 @@ class LoginOtpViewModel @Inject constructor(
             }
             else -> {
                 _showProgress.value = Event(false)
-                prefProvider.setValueboolean(IS_LOGIN, true)
                 _data.value = Event(value.otp)
 
 

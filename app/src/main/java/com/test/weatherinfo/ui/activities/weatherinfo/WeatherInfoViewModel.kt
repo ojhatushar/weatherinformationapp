@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.financialinvestment.data.repositories.WeatherInfoRepository
-import com.test.weatherinfo.data.model.requestModel.LocationHistoryModel
+import com.test.weatherinfo.data.repositories.WeatherInfoRepository
 import com.test.weatherinfo.data.model.responseModel.CurrentWeatherResponse
 import com.test.weatherinfo.data.model.responseModel.ForecastWeatherResponse
 import com.test.weatherinfo.data.remote.Constants.API_KEY_WEATHER

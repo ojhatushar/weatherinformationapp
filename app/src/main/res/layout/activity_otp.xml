@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.test.weatherinfo.ui.activities.login.LoginOtpViewModel" />
@@ -12,6 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/weather_image_mobile_screen"
         tools:context=".ui.activities.login.OtpActivity">
 
         <include
@@ -31,7 +33,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/tv_otp_verification"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_16ssp" />
 
 
@@ -44,31 +46,22 @@
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:text="@={viewModel.loginDetails.otp}"
-                android:textColor="@color/color_blue"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_18ssp"
                 app:OtpItemCount="6"
-                app:OtpLineColor="@color/color_blue"
+                app:OtpLineColor="@color/white"
                 app:OtpViewType="line" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvOtp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_horizontal"
                 android:text="00:12"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_11ssp" />
 
 

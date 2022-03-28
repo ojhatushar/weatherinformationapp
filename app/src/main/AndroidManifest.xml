@@ -22,10 +22,7 @@
         <activity
             android:name=".ui.activities.login.MobileNumberActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.activities.MainActivity"
-            android:exported="true">
-        </activity>
+        <activity android:name=".ui.activities.MainActivity" />
         <activity
             android:name=".ui.activities.SplashActivity"
             android:exported="true">

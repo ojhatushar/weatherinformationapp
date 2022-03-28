@@ -14,13 +14,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.test.weatherinfo.R
+import com.test.weatherinfo.data.remote.Constants
 import com.test.weatherinfo.databinding.ActivityOtpBinding
+import com.test.weatherinfo.di.PrefProvider
 import com.test.weatherinfo.ui.activities.MainActivity
 import com.test.weatherinfo.utils.ProgressUtils
 import com.test.weatherinfo.utils.extensions.liveSnackBar
 import com.test.weatherinfo.utils.extensions.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OtpActivity : AppCompatActivity() {
@@ -30,6 +33,9 @@ class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
 
     lateinit var auth: FirebaseAuth
+
+    @Inject
+    lateinit var prefProvider: PrefProvider
 
     private lateinit var timer: CountDownTimer
     private val viewModel by viewModels<LoginOtpViewModel>()
@@ -95,6 +101,7 @@ class OtpActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    prefProvider.setValueboolean(Constants.IS_LOGIN, true)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

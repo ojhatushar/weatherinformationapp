@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
+           card_view:cardBackgroundColor="@color/color_blue"
             card_view:cardElevation="@dimen/_3sdp"
             card_view:cardUseCompatPadding="true">
 
@@ -26,7 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:background="@color/white"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@{weatherModelData.main}"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_16ssp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@{weatherModelData.description}"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_11ssp" />
 
             </LinearLayout>

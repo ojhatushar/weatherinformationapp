@@ -57,8 +57,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
 
-        /*val mapFragment = MapFragment()
-        replaceFragment(mapFragment)*/
+        val mapFragment = MapFragment()
+        replaceFragment(mapFragment)
 
 
     }
