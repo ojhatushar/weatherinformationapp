@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.test.weatherinfo.data.model.requestModel.LocationHistoryModel
 import com.test.weatherinfo.databinding.ItemLocationHistoryBinding
+import com.test.weatherinfo.ui.interfaces.ItemClickListener
 
-class HistoryScreenListAdapter :
+class HistoryScreenListAdapter(var itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<HistoryScreenListAdapter.MyViewHolder>() {
 
 
@@ -29,6 +30,10 @@ class HistoryScreenListAdapter :
         val itemBinding = holder.itemLocationHistoryBinding
 
         itemBinding.locationHistoryModel = historyScreenList[position]
+
+        itemBinding.root.setOnClickListener {
+            itemClickListener.onClick(position)
+        }
 
         itemBinding.executePendingBindings()
     }

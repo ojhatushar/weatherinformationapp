@@ -12,6 +12,7 @@
     <color name="color_gray1_transparent">#55EEF1F2</color>
     <color name="color_gray2">#CCCCCC</color>
     <color name="color_blue">#33CCFF</color>
+    <color name="color_blue_trans">#3333CCFF</color>
     <color name="color_blue_disable">#7733CCFF</color>
     <color name="color_green">#99FF33</color>
     <color name="color_green_disable">#7799FF33</color>

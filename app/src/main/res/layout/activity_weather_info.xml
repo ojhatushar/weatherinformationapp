@@ -20,7 +20,7 @@
             android:layout_below="@+id/layoutToolbar"
             app:tabIndicatorColor="@color/color_blue"
             app:tabSelectedTextColor="@color/color_blue"
-            app:tabTextColor="@color/color_gray" />
+            app:tabTextColor="@color/black" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

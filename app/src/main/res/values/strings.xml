@@ -36,6 +36,12 @@
     <string name="weather_info">Weather Info</string>
     <string name="otp_screen">Otp Screen</string>
     <string name="no_location">No Location Found</string>
+    <string name="tv_date">Date</string>
+    <string name="tv_weather">Weather</string>
+    <string name="tv_description">Description</string>
+    <string name="tv_address">Address</string>
+    <string name="tv_latitude">Latitude</string>
+    <string name="tv_longitude">Longitude</string>
 
 
     <string-array name="tabTitle">

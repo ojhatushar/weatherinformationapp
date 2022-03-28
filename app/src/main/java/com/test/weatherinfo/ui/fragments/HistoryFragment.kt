@@ -1,5 +1,6 @@
 package com.test.weatherinfo.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,8 +13,10 @@ import com.test.weatherinfo.R
 import com.test.weatherinfo.data.model.requestModel.LocationHistoryModel
 import com.test.weatherinfo.databinding.FragmentHistoryBinding
 import com.test.weatherinfo.ui.activities.MainActivity
+import com.test.weatherinfo.ui.activities.weatherinfo.WeatherInfoActivity
 import com.test.weatherinfo.ui.activities.weatherinfo.WeatherInfoViewModel
 import com.test.weatherinfo.ui.adapters.HistoryScreenListAdapter
+import com.test.weatherinfo.ui.interfaces.ItemClickListener
 import com.test.weatherinfo.utils.ProgressUtils
 import com.test.weatherinfo.utils.extensions.liveSnackBar
 import com.test.weatherinfo.utils.statusUtils.Status
@@ -27,12 +30,13 @@ import com.test.weatherinfo.utils.statusUtils.Status
  * Use the [HistoryFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(), ItemClickListener {
     // TODO: Rename and change types of parameters
 
     private lateinit var binding: FragmentHistoryBinding
     private val viewModel by activityViewModels<WeatherInfoViewModel>()
     private lateinit var historyScreenListAdapter: HistoryScreenListAdapter
+    private lateinit var historySCreenList: ArrayList<LocationHistoryModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +60,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        historyScreenListAdapter = HistoryScreenListAdapter()
+        historyScreenListAdapter = HistoryScreenListAdapter(this)
         binding.rvLocationHistory.adapter = historyScreenListAdapter
 
     }
@@ -66,10 +70,12 @@ class HistoryFragment : Fragment() {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        resource.data?.let { historyScreenList ->
+                        resource.data?.let { locationHistoryList ->
 
-                            if (historyScreenList.isNotEmpty()) {
-                                setLocationHistory(historyScreenList)
+                            if (locationHistoryList.isNotEmpty()) {
+                                historySCreenList =
+                                    locationHistoryList as ArrayList<LocationHistoryModel>
+                                setLocationHistory(locationHistoryList)
                             } else {
                                 Toast.makeText(
                                     requireActivity(),
@@ -119,6 +125,14 @@ class HistoryFragment : Fragment() {
     private fun setupSnackbar() {
         binding.root.liveSnackBar(this, viewModel.snackbarText, Snackbar.LENGTH_SHORT)
 
+    }
+
+    override fun onClick(position: Int) {
+        val intent = Intent(requireActivity(), WeatherInfoActivity::class.java)
+        intent.putExtra("lat", historySCreenList[position].latitude)
+        intent.putExtra("long", historySCreenList[position].longitude)
+        intent.putExtra("addresses", historySCreenList[position].address)
+        startActivity(intent)
     }
 
 }

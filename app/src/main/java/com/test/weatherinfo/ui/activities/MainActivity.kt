@@ -15,21 +15,25 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.navigation.NavigationView
 import com.test.weatherinfo.R
+import com.test.weatherinfo.data.remote.Constants
 import com.test.weatherinfo.databinding.ActivityMainBinding
+import com.test.weatherinfo.di.PrefProvider
 import com.test.weatherinfo.ui.activities.login.MobileNumberActivity
 import com.test.weatherinfo.ui.fragments.HistoryFragment
 import com.test.weatherinfo.ui.fragments.MapFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+class MainActivity : AppCompatActivity() {
 
     var activity: Activity = this
     private lateinit var binding: ActivityMainBinding
     private lateinit var actionBarToggle: ActionBarDrawerToggle
-    private lateinit var map: GoogleMap
 
+    @Inject
+    lateinit var prefProvider: PrefProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +57,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.lifecycleOwner = this
 
-        val mapFragment = MapFragment()
-        replaceFragment(mapFragment)
+        /*val mapFragment = MapFragment()
+        replaceFragment(mapFragment)*/
 
 
     }
@@ -62,10 +66,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // The action bar home/up action should open or close the drawer.
         when (item.itemId) {
-           /* R.id.menuLogout -> {
-                AlertDialogSingout()
-                return true
-            }*/
+
             android.R.id.home -> {
                 binding.drawerLayout.openDrawer(GravityCompat.START)
                 return true
@@ -86,27 +87,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun selectDrawerItem(menuItem: MenuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         var fragment: Fragment? = null
-        val fragmentClass: Class<*> = when (menuItem.itemId) {
-            R.id.menuMapScreen -> MapFragment::class.java
-            R.id.menuHistScreen -> HistoryFragment::class.java
-
-            else -> MapFragment::class.java
-        }
-        try {
-            fragment = fragmentClass.newInstance() as Fragment
-        } catch (e: Exception) {
-            e.printStackTrace()
+        when (menuItem.itemId) {
+            R.id.menuMapScreen -> fragment = MapFragment::class.java.newInstance()
+            R.id.menuHistScreen -> fragment = HistoryFragment::class.java.newInstance()
+            R.id.menuLogout -> alertDialogSingout()
         }
 
         // Insert the fragment by replacing any existing fragment
 
         replaceFragment(fragment)
 
-
-        // Highlight the selected item has been done by NavigationView
-        // menuItem.isChecked = true
         // Set action bar title
-        title = menuItem.title
+        ///title = menuItem.title
         // Close the navigation drawer
         binding.drawerLayout.closeDrawers()
     }
@@ -118,26 +110,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(p0: GoogleMap) {
-        TODO("Not yet implemented")
-    }
 
-    fun AlertDialogSingout() {
+    private fun alertDialogSingout() {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage(getString(R.string.logout_message))
             .setCancelable(false)
             .setPositiveButton("Yes") { dialog, id ->
-                /*PreferenceUtil.getPref(this@HomeSlider).edit()
-                    .putBoolean(PreferenceKeys.IS_LOGIN, false)
-                    .putString(PreferenceKeys.USER_FIRSTNAME, "")
-                    .putString(PreferenceKeys.USER_EMAIL, "")
-                    .putString(PreferenceKeys.USER_MOBILE_NO, "")
-                    .putString(PreferenceKeys.USER_PASSWORD, "")
-                    .putString(PreferenceKeys.USER_PROFILE_IMAGE, "")
-                    .apply()*/
+
+                prefProvider.setValueboolean(Constants.IS_LOGIN, false)
+
                 val myIntent = Intent(activity, MobileNumberActivity::class.java)
-                myIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(myIntent)
+                finishAffinity()
             }
             .setNegativeButton(
                 "No"
